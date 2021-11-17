@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Social Media Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+    />
+    <style>
+      /* Theme Style */
+      html.light {
+        --text: hsl(228, 12%, 44%);
+        --headings: hsl(230, 17%, 14%);
+        --card-background: hsl(227, 47%, 96%);
+        --top-background: hsl(225, 100%, 98%);
+        --main-background: hsl(0, 0%, 100%);
+        --theme-toggler-background: hsl(230, 22%, 74%);
+      }
+      html.dark {
+        --text: hsl(228, 34%, 66%);
+        --headings: hsl(0, 0%, 100%);
+        --card-background: hsl(228, 28%, 20%);
+        --top-background: hsl(232, 19%, 15%);
+        --main-background: hsl(230, 17%, 14%);
+        --theme-toggler-background: linear-gradient(
+          to right,
+          hsl(210, 78%, 56%),
+          hsl(146, 68%, 55%)
+        );
+      }
+
+      /* Global Styles */
+      :root {
+        --red: hsl(356, 69%, 56%);
+        --green: hsl(163, 72%, 41%);
+
+        --facebook: hsl(208, 92%, 53%);
+        --twitter: hsl(203, 89%, 53%);
+        --youtube: hsl(348, 97%, 39%);
+        --instagram: linear-gradient(
+          90deg,
+          hsl(37, 97%, 70%),
+          hsl(329, 70%, 58%)
+        );
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        color: var(--text);
+        font: 700 14px "Inter", sans-serif;
+        background-color: var(--main-background);
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: var(--headings);
+      }
+
+      /* Utilities */
+      .d-grid {
+        display: grid;
+      }
+      .space-between-flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .center-flex {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .card {
+        will-change: background-color;
+        transition: background-color 0.3s;
+        background-color: var(--card-background);
+      }
+      .light .card:hover {
+        background-color: #e1e3f0;
+      }
+      .dark .card:hover {
+        background-color: #333a56;
+      }
+
+      /*
+      ** Dashboard Styles
+      */
+      .dashboard {
+        padding: 40px 24px;
+      }
+      @media (min-width: 991px) {
+        .dashboard {
+          padding: 30px 24px;
+        }
+        .dashboard .cards {
+          justify-content: space-between;
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      @media (min-width: 1200px) {
+        .dashboard {
+          margin: auto;
+          padding: 30px 0;
+          max-width: 1110px;
+        }
+        .dashboard .cards {
+          grid-template-columns: repeat(4, 255px);
+        }
+      }
+      .dashboard .card .increase {
+        color: var(--green);
+      }
+      .dashboard .card .decrease {
+        color: var(--red);
+      }
+      .dashboard .card .increase span,
+      .dashboard .card .decrease span {
+        margin: 0 4px 0 5px;
+      }
+
+      /*
+      ** Header
+      */
+      .dashboard header hr {
+        margin: 24px 0 16px;
+      }
+      @media (min-width: 991px) {
+        .dashboard header hr {
+          display: none;
+        }
+        .dashboard header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+        .dashboard header::before {
+          content: "";
+          width: 100%;
+          height: 175px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: -1;
+          background-color: var(--top-background);
+        }
+        .dashboard header #theme-toggler {
+          margin-left: 15px;
+        }
+      }
+      .dashboard header #theme-toggler {
+        width: 50px;
+        height: 24px;
+        padding: 3px;
+        border: none;
+        cursor: pointer;
+        border-radius: 20px;
+        background: var(--theme-toggler-background);
+      }
+      .dashboard header #theme-toggler:hover {
+        background: linear-gradient(
+          to right,
+          hsl(210, 78%, 56%),
+          hsl(146, 68%, 55%)
+        );
+      }
+      .dashboard header #theme-toggler span {
+        width: 18px;
+        height: 18px;
+        display: block;
+        border-radius: 50%;
+        background-color: var(--main-background);
+      }
+      .light #theme-toggler span {
+        float: right;
+      }
+
+      /*
+      ** Accounts
+      */
+      .accounts {
+        gap: 24px;
+        text-align: center;
+        margin-top: 40px;
+        grid-template-rows: repeat(4, 216px);
+      }
+      @media (min-width: 991px) {
+        .accounts {
+          gap: 30px;
+          margin-top: 45px;
+          grid-template-rows: 216px;
+        }
+      }
+      .accounts .card {
+        gap: 24px;
+        padding: 24px 0;
+        position: relative;
+        border-radius: 4px;
+        border-top: 4px solid;
+      }
+      .accounts .card.facebook {
+        border-top-color: var(--facebook);
+      }
+      .accounts .card.twitter {
+        border-top-color: var(--twitter);
+      }
+      .accounts .card.instagram::before {
+        content: "";
+        position: absolute;
+        top: -4px;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        background: var(--instagram);
+      }
+      .accounts .card.youtube {
+        border-top-color: var(--youtube);
+      }
+
+      /* [1] Name */
+      .accounts .name span {
+        margin-left: 5px;
+      }
+      @media (min-width: 991px) {
+        .accounts .name span {
+          margin-left: 10px;
+        }
+      }
+
+      /* [2] Total Followers */
+      .accounts .total-followers {
+        margin: 30px 0;
+      }
+      .accounts .total-followers h3 {
+        font-size: 3.5em;
+      }
+      .accounts .total-followers span {
+        font-weight: 400;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+      }
+
+      /*
+       ** Today Overview
+       */
+      .overview h2 {
+        font-size: 2em;
+        margin: 50px 0 25px;
+      }
+      .light .overview h2 {
+        color: var(--text);
+      }
+      .overview .cards {
+        gap: 16px;
+        grid-template-rows: repeat(8, 125px);
+      }
+      @media (min-width: 991px) {
+        .overview .cards {
+          gap: 24px 30px;
+          grid-template-rows: 125px 125px;
+        }
+      }
+      .overview .card {
+        gap: 30px;
+        padding: 24px 30px 27px 25px;
+      }
+      .overview .card h4 {
+        font-size: 2em;
+      }
+      .overview .card div:first-child span {
+        text-transform: capitalize;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dashboard">
+      <!-- [1] Header -->
+      <header>
+        <div>
+          <h1>Social Media Dashboard</h1>
+          <p>Total Followers: 23,004</p>
+        </div>
+
+        <hr />
+
+        <div class="space-between-flex">
+          <span>Dark Mode</span>
+          <button id="theme-toggler">
+            <span></span>
+          </button>
+        </div>
+      </header>
+
+      <!-- [2] Accounts -->
+      <div class="accounts cards d-grid"></div>
+
+      <!-- [3] Today Overview -->
+      <div class="overview">
+        <h2>Overview - Today</h2>
+        <div class="cards d-grid"></div>
+      </div>
+    </div>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>
