@@ -4,7 +4,7 @@ This is a solution to the [Social media dashboard with theme switcher challenge 
 
 ## Links
 
-- Solution [URL](https://www.frontendmentor.io/solutions/social-media-dashboard-with-theme-switcher-)
+- Solution [URL](https://www.frontendmentor.io/solutions/social-media-dashboard-RVaxSXTbG)
 - Live Site [URL](https://mhmd-tarek-mhmd.github.io/Social-Media-Dashboard/)
 
 ## Screenshots
