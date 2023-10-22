@@ -66,7 +66,7 @@
     init: function () {
       /*
        ** Accounts
-      */
+       */
       Controller.getAccounts().forEach((account) => {
         const platformName = account[0];
         const accounts = account[1];
@@ -76,7 +76,7 @@
 
       /*
        ** Today Overview
-      */
+       */
 
       Controller.getTodayOverview().forEach((overview) => {
         const platformName = overview[0];
@@ -103,6 +103,10 @@
           e.target.ariaLabel = "Switch to dark mode";
         }
       };
+
+      // Check for default browser mode
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches)
+        $("#theme-toggler").click();
     },
   };
 
