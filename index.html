@@ -60,8 +60,7 @@
       }
       h1,
       h2,
-      h3,
-      h4 {
+      strong {
         color: var(--headings);
       }
 
@@ -177,6 +176,7 @@
         height: 18px;
         display: block;
         border-radius: 50%;
+        pointer-events: none;
         background-color: var(--main-background);
       }
       .light #theme-toggler span {
@@ -241,7 +241,8 @@
       .accounts .total-followers {
         margin: 30px 0;
       }
-      .accounts .total-followers h3 {
+      .accounts .total-followers strong {
+        display: block;
         font-size: 3.5em;
       }
       .accounts .total-followers span {
@@ -274,7 +275,8 @@
         gap: 30px;
         padding: 24px 30px 27px 25px;
       }
-      .overview .card h4 {
+      .overview .card strong {
+        display: block;
         font-size: 2em;
       }
       .overview .card div:first-child span {
@@ -283,7 +285,7 @@
     </style>
   </head>
   <body>
-    <div class="dashboard">
+    <main class="dashboard">
       <!-- [1] Header -->
       <header>
         <div>
@@ -295,21 +297,29 @@
 
         <div class="space-between-flex">
           <span>Dark Mode</span>
-          <button id="theme-toggler">
+          <button
+            aria-label="Switch to dark mode"
+            title="Switch to dark mode"
+            id="theme-toggler"
+          >
             <span></span>
           </button>
         </div>
       </header>
 
       <!-- [2] Accounts -->
-      <div class="accounts cards d-grid"></div>
+      <div
+        role="region"
+        aria-label="Accounts Stats"
+        class="accounts cards d-grid"
+      ></div>
 
       <!-- [3] Today Overview -->
-      <div class="overview">
+      <section aria-labelledby="overview-label" class="overview">
         <h2>Overview - Today</h2>
         <div class="cards d-grid"></div>
-      </div>
-    </div>
+      </section>
+    </main>
 
     <script src="js/app.js"></script>
   </body>

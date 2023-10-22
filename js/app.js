@@ -1,6 +1,6 @@
-const $ = document.querySelector.bind(document);
-
 (function () {
+  const $ = document.querySelector.bind(document);
+
   const Model = {
     accounts: {
       facebook: {
@@ -66,7 +66,7 @@ const $ = document.querySelector.bind(document);
     init: function () {
       /*
        ** Accounts
-       */
+      */
       Controller.getAccounts().forEach((account) => {
         const platformName = account[0];
         const accounts = account[1];
@@ -76,7 +76,7 @@ const $ = document.querySelector.bind(document);
 
       /*
        ** Today Overview
-       */
+      */
 
       Controller.getTodayOverview().forEach((overview) => {
         const platformName = overview[0];
@@ -92,9 +92,16 @@ const $ = document.querySelector.bind(document);
        ** Theme Toggler
        */
       $("#theme-toggler").onclick = (e) => {
-        $("html").classList.contains("light")
-          ? ($("html").className = "dark")
-          : ($("html").className = "light");
+        const isLightTheme = $("html").classList.contains("light");
+        if (isLightTheme) {
+          $("html").className = "dark";
+          e.target.title = "Switch to light mode";
+          e.target.ariaLabel = "Switch to light mode";
+        } else {
+          $("html").className = "light";
+          e.target.title = "Switch to dark mode";
+          e.target.ariaLabel = "Switch to dark mode";
+        }
       };
     },
   };
@@ -113,7 +120,7 @@ const $ = document.querySelector.bind(document);
             </div>
 
             <div class='total-followers'>
-              <h3>${totalFollowers}</h3>
+              <strong>${totalFollowers}</strong>
               <span>
                 ${platformName === "youtube" ? "Subscribes" : "Followers"}
               </span>
@@ -146,7 +153,7 @@ const $ = document.querySelector.bind(document);
             </div>
 
             <div class='space-between-flex'>
-              <h4>${props[firstPropertyName]}</h4>
+              <strong>${props[firstPropertyName]}</strong>
               <div class='center-flex ${
                 props[secondPropertyName] < 0 ? "decrease" : "increase"
               }'>
@@ -165,7 +172,7 @@ const $ = document.querySelector.bind(document);
             </div>
 
             <div class='space-between-flex'>
-              <h4>${props[thirdPropertyName]}</h4>
+              <strong>${props[thirdPropertyName]}</strong>
               <div class='center-flex ${
                 props[forthPropertyName] < 0 ? "decrease" : "increase"
               }'>
